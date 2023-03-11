@@ -8,26 +8,26 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
+import { padding } from "@mui/system";
 
 const Item = ({ element }) => {
   return (
-    <Card sx={{ width: 300, height: 360 }}>
-      <CardMedia
+    <Card  style={{}} sx={{ width: 300, height: 360 }}>
+      <CardMedia 
         sx={{ height: 200 }}
         image={element.img}
-        title="green iguana"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" style={{color:"red"}}>
+        <Typography gutterBottom variant="h5" component="div" style={{color:"black", width:"300px", height:"20px", marginBottom:"15px"}}>
           {element.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.primary" style={{width:"300px", height:"50px"}}>
           {element.description}
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to={`/Item/${element.id}`}>
-          <Button style={{ width: "100%" }} size="small" variant="contained">
+        <Link style={{width:"300px", textDecoration:"none"}} to={`/Item/${element.id}`}>
+          <Button style={{width:"100%"}} size="medium" variant="contained">
             Ver detalle
           </Button>
         </Link>

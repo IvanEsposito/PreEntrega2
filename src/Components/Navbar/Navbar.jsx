@@ -14,7 +14,7 @@ const Navbar = () => {
           style={{ width: "70%", height: "100%" }}
         />
       </Link>
-      <div style={{marginLeft:"-200px"}}>
+      <div style={{marginLeft:"-200px"}} >
       <ul className={styles.containerList}>
         <Link to="/" className={styles.containerList}>Todas</Link>
         <Link to={"/category/urbanas"} className={styles.containerList}>Urbanas</Link>
