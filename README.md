@@ -1,4 +1,4 @@
-# Ecommerce compus
+# Ecommerce PC & Componentes
 
 
 ## Para clonar el repositorio, pegar el siguiente comando 
