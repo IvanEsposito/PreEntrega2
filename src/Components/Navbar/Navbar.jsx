@@ -1,10 +1,26 @@
-// Estilos css
-// import "./Navbar.module.css";
-
-import CartWidget from "../CartWidget/CartWidget";
+import CartWidget from "../Cart/CartWidget";
 import styles from "./Navbar.module.css";
 import { Link } from "react-router-dom";
-const Navbar = () => {
+import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebaseConfig";
+const Navbar = (children) => {
+
+  const [categoryList, setCategoryList] = useState([])
+
+  useEffect(()=>{
+    const itemsCollection = collection(db, "Tags")
+    getDocs(itemsCollection)
+    .then((res)=>{
+      let listadoCategories = res.docs.map(category=>{
+        return {
+          ...category.data(),
+          id:category.id
+        }
+      })
+      setCategoryList(listadoCategories)
+    })
+    },[])
   return (
     <div className={styles.containerNavbar} >
       <Link to={"/"} style={{maxWidth:"300px"}}>
@@ -16,9 +32,11 @@ const Navbar = () => {
       </Link>
       <div style={{marginLeft:"-200px"}} >
       <ul className={styles.containerList}>
-        <Link to="/" className={styles.containerList}>Todas</Link>
-        <Link to={"/category/urbanas"} className={styles.containerList}>Urbanas</Link>
-        <Link to={"/category/deportivas"} className={styles.containerList}>Deportivas</Link>
+      {
+        categoryList.map((category)=>{
+          return <Link key={category.id} to={category.Path} className={styles.containerList}>{category.Title}</Link>
+        })
+      }
       </ul>
       </div>
       <CartWidget />
@@ -27,3 +45,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

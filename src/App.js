@@ -1,15 +1,14 @@
 import Navbar from "./Components/Navbar/Navbar.jsx";
-import Footer from "./Components/Footer/Footer.jsx";
 import ItemListContainer from "./Components/ItemListContainer/ItemListContainer.jsx";
-import ItemCount from "./Components/ItemCount/ItemCount.jsx";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./Components/Cart/Cart.jsx";
 import ItemDetailContainer from "./Components/ItemDetailContainer/ItemDetailContainer.jsx";
+import CartContextProvider from "./Components/Context/CartContext.jsx";
 
 function App() {
   return (
     <BrowserRouter>
+    <CartContextProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<ItemListContainer />} />
@@ -21,7 +20,9 @@ function App() {
         <Route path="/Item/:id" element={<ItemDetailContainer />} />
 
         <Route path="*" element={<h1>404</h1>} />
+
       </Routes>
+      </CartContextProvider>
     </BrowserRouter>
   );
 }

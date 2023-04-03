@@ -1,0 +1,48 @@
+.container {
+  width: 95%;
+  display: flex;
+  margin: 30px auto;
+  border: 3px solid black;
+  border-radius: 3px;
+}
+.barra {
+  background-color: #09072c;
+  width: 10%;
+  color: white;
+}
+
+.prods {
+  background-color: rgb(220, 220, 220);
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 3px;
+  padding: 0px;
+}
+.hoverPC {
+  border: 3px solid rgb(220, 220, 220);
+}
+.hoverPC:hover {
+  border: 3px solid black;
+}
+.containerList {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-decoration: none;
+  list-style: none;
+}
+.containerList li {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.4s;
+  font-size: 1.5em;
+  margin: 4px 4px;
+}
+.containerList li:hover {
+  color: white;
+  background-size: 100% 2px;
+}

@@ -1,0 +1,50 @@
+.Container{
+    width: 1280px;
+    height: auto;
+    max-height: 420px;
+    margin:auto;
+    margin-top: 30px;
+    display: flex;
+    border: 5px solid black;
+
+}
+.ContainerImg{
+    width: 30%;
+    height: auto;
+
+}
+.ContainerImg img{
+    max-width: 100%;
+    margin: 0px auto;
+}
+.ContainerDetail{
+    width: 70%;
+    height: auto;
+    border-left: 5px solid black;
+    display: flex;
+    flex-direction: column;
+}
+.ContainerDetailInfo{
+    width: 100%;
+    height: 80% ;
+    padding-left:7px;
+    display: flex;    
+    flex-direction: column;
+}
+.ContainerDetailContador{
+    width: 100%;
+    height: 20% ;
+    background-color: #09072c;
+    color: white;
+}
+.title{
+    font-size: 1em;
+}
+.desc{
+    font-size: 0.9em;
+}
+.price{
+    font-size: 1.5em;
+    padding-left:7px;
+    padding-bottom:7px;
+}

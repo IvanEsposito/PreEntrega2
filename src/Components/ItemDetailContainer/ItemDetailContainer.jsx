@@ -1,34 +1,54 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { products } from "../../productsMock.js";
-import ItemCount from "../ItemCount/ItemCount.jsx";
-import styles from "./ItemDetailContainer.module.css";
-
+import { CartContext } from "../Context/CartContext.jsx";
+import Swal from "sweetalert2";
+import { useState } from "react";
+import { getDoc, collection, doc } from "firebase/firestore";
+import { db } from "../../firebaseConfig.js";
+import ItemDetail from "./ItemDetail.jsx";
 const ItemDetailContainer = () => {
   const { id } = useParams();
 
-  const productSelected = products.find((element) => element.id === Number(id));
+  const { agregarCarrito, getQuantityById } = useContext(CartContext);
 
-  const onAdd = (cantidad) => {
-    console.log(`Se agrego al carrito ${cantidad} productos`);
+  const [productSelected, setProductSelected] = useState({});
+
+  useEffect(() => {
+    const itemsCollection = collection(db, "armadas");
+    const ref = doc(itemsCollection, id);
+    getDoc(ref).then((res) => {
+      setProductSelected({
+        ...res.data(),
+        id: res.id,
+      });
+    });
+  }, [id]);
+
+  const onAdd = (contador) => {
+    let producto = {
+      ...productSelected,
+      quantity: contador,
+    };
+
+    Swal.fire({
+      position: "top-start",
+      icon: "success",
+      title: `Se agregaron con éxito ${contador} productos`,
+      showConfirmButton: false,
+      timer: 1500,
+      width: "300px",
+    });
+    agregarCarrito(producto);
   };
 
+  let quantity = getQuantityById(Number(id));
+
   return (
-    <div className={styles.product}>
-      <img className={styles.img} src={productSelected.img} alt="" />
-      <span className={styles.linea}></span>
-      <h1 className={styles.title}>{productSelected.title}</h1>
-      <span className={styles.linea}></span>
-      <h2 className={styles.desc}>{productSelected.description}</h2>
-      <span className={styles.linea}></span>
-      <h2 className={styles.price} style={{ justifySelf: "flex-start" }}>Precio: $
-        {productSelected.price}
-      </h2>
-      <span className={styles.linea}></span>
-      <div style={{display:"flex", justifyContent:"center", textAlign:"center", marginTop:"15px"}}>
-        <ItemCount stock={productSelected.stock} onAdd={onAdd} />
-      </div>
-    </div>
+    <ItemDetail
+      productSelected={productSelected}
+      onAdd={onAdd}
+      quantity={quantity}
+    />
   );
 };
 
