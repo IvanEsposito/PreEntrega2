@@ -6,6 +6,7 @@
 git clone https://github.com/IvanEsposito/ProyectoReact.git
 
 ```
+## Dependencias que se utilizan en este proyecto
 
 - React router
 - SweetAlert 2
