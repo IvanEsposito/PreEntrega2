@@ -12,19 +12,19 @@ import styles from "./ItemList.module.css";
 const Item = ({ element }) => {
   return (
     <div className={styles.hoverPC}>
-      <Card style={{ width: "300px" }} sx={{ width: 350, margin: "6px" }}>
+      <Card style={{ width: "300px", maxHeight:"400px" }} sx={{ width: 350, margin: "6px" }}>
         <CardMedia
           image={element.img}
           component="img"
-          alt="green iguana"
+          alt="PC"
           height="200"
           object-fit="contain"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{}}>
+          <Typography gutterBottom variant="h5" component="div" style={{fontSize:"1.1em", textAlign:"center", fontWeight:"bold"}}>
             {element.title}
           </Typography>
-          <Typography variant="body3" color="text.primary" style={{}}>
+          <Typography variant="body3" color="text.primary" style={{textAlign:"center"}}>
             {element.description}
           </Typography>
         </CardContent>
